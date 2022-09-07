@@ -1,5 +1,6 @@
-import * as THREE from '../node_modules/three/build/three.module.js ';
-import Note from './note.js';
+import * as THREE from 'three';
+import Note from './note';
+
 export default class Audio {
 	constructor(renderer, camera, scene, musicDeley, path, track) {
 		this.renderer = renderer;
@@ -16,27 +17,26 @@ export default class Audio {
 		this.playing = false;
 
 		this.timeZero;
-		this.audio = './src/songs/oshamaScramble/t+pazolite - Oshama Scramble!.mp3';
-
-		this.song;
+		this.audio = require('./songs/650415 MAZARE - Mazare Party/audio.mp3');
+		this.song = require("./songs/650415 MAZARE - Mazare Party/MAZARE - Mazare Party (Insp1r3) [Cokii's 4K Hard].osu");
 	}
 
-	getFiles() {
-		var fs = require(path);
-		var files = fs.readdirSync(path);
-		console.log(files);
-	}
+	// getFiles() {
+	// 	var fs = require(path);
+	// 	var files = fs.readdirSync(path);
+	// 	console.log(files);
+	// }
 
 	async parseFile(vel, keys) {
-		let song = "./src/songs/oshamaScramble/t+pazolite - Oshama Scramble! ([ A v a l o n ]) [Draftnell's ADVANCED].osu";
+		let song = this.song;
 		// let song = "./src/songs/chakra/1494300 uma - Chakra/uma - Chakra (Shima Rin) [MD's NOVICE].osu";
 
-		let _song;
+		let _song = song.default.split('\n');
+		console.warn(_song);
 		let objects = [];
 		let loader = new THREE.FileLoader();
-		_song = loader.loadAsync(song);
+		// _song = loader.loadAsync(song);
 		_song = await _song;
-		_song = _song.split('\n');
 		let startLine;
 		for (let i = 0; i < _song.length; i++) {
 			if (_song[i].includes('[HitObjects]')) {

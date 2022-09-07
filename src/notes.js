@@ -1,4 +1,4 @@
-import * as THREE from '../node_modules/three/build/three.module.js ';
+import * as THREE from 'three';
 export default class Notes {
 	constructor(keys) {
 		this.keys = keys;
@@ -15,7 +15,7 @@ export default class Notes {
 		this.listener = new THREE.AudioListener();
 		this.sound = new THREE.Audio(this.listener);
 		this.audioLoader = new THREE.AudioLoader();
-		this.audio = './src/assets/normal-hitnormal.ogg';
+		this.audio = require('./assets/normal-hitnormal.ogg');
 
 		this.audioLoader.load(this.audio, (buffer) => {
 			this.sound.setBuffer(buffer);

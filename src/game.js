@@ -1,7 +1,7 @@
-import * as THREE from '../node_modules/three/build/three.module.js ';
+import * as THREE from 'three';
 
-import Track from './track.js';
-import Keys from './keys.js';
+import Track from './track';
+import Keys from './keys';
 
 export default class Game {
 	constructor() {

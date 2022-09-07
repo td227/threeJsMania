@@ -1,7 +1,7 @@
-import * as THREE from '../node_modules/three/build/three.module.js ';
+import * as THREE from 'three';
 //import parseFile from './parseFile.js';
-import Notes from './notes.js';
-import Audio from './audio.js';
+import Notes from './notes';
+import Audio from './audio';
 
 export default class Track {
 	constructor(renderer, camera, scene, keys, musicDeley) {
@@ -27,8 +27,6 @@ export default class Track {
 		//this will be used to calculate time time at which point the first note falls
 		//this is important to sync the notes with the music
 		this.timeZero = 0;
-
-		this.songPath = './src/songs/chakra';
 
 		this.endSphere;
 		this.notes = [];
@@ -115,32 +113,32 @@ export default class Track {
 		// 	new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/note.png') })
 		// ];
 		let noteMaterials = [
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/note.png') }),
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/note2.png') }),
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/note2.png') }),
-			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/note.png') })
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/note.png')) }),
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/note2.png')) }),
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/note2.png')) }),
+			new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/note.png')) })
 		];
 
 		let sliderMaterials = [
 			[
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTop.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderMid.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTail.png') })
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTop.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderMid.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTail.png')) })
 			],
 			[
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTop2.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderMid2.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTail2.png') })
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTop2.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderMid2.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTail2.png')) })
 			],
 			[
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTop2.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderMid2.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTail2.png') })
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTop2.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderMid2.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTail2.png')) })
 			],
 			[
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTop.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderMid.png') }),
-				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./src/assets/sliderTail.png') })
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTop.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderMid.png')) }),
+				new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load(require('./assets/sliderTail.png')) })
 			]
 		];
 		this.gameNotes = new Notes(this.keys);
@@ -276,7 +274,7 @@ export default class Track {
 		// this.scene.add(light2.target);
 		// this.scene.add(light.target);
 
-		let texture = loader.load('./src/assets/wallTexture.png', function (texture) {
+		let texture = loader.load(require('./assets/wallTexture.png'), function (texture) {
 			texture.wrapS = THREE.RepeatWrapping;
 			texture.wrapT = THREE.RepeatWrapping;
 			texture.repeat.set(8, 8);
@@ -290,7 +288,7 @@ export default class Track {
 			reflectivity: 1,
 			side: THREE.DoubleSide
 		});
-		let texture2 = loader.load('./src/assets/wallTexture2.png', function (texture) {
+		let texture2 = loader.load(require('./assets/wallTexture2.png'), function (texture) {
 			texture.wrapS = THREE.RepeatWrapping;
 			texture.wrapT = THREE.RepeatWrapping;
 			texture.repeat.set(8, 8);
@@ -362,10 +360,10 @@ export default class Track {
 		let sphereGeo = new THREE.SphereGeometry(125, 32, 32);
 		let sphereMat = new THREE.MeshPhongMaterial({
 			color: 0xffffff,
-			map: loader.load('./src/assets/flash.png'),
+			map: loader.load(require('./assets/flash.png')),
 			transparent: true,
 			emissive: 0xffffff,
-			emissiveMap: loader.load('./src/assets/flash.png'),
+			emissiveMap: loader.load(require('./assets/flash.png')),
 			side: THREE.DoubleSide
 		});
 		let sphere = new THREE.Mesh(sphereGeo, sphereMat);
@@ -389,8 +387,8 @@ export default class Track {
 			let kGeometry = new THREE.PlaneGeometry(this.keyWidths[i], (this.key.width / 75) * 632);
 			let kLightMat = new THREE.MeshPhongMaterial({
 				color: 0xffffff,
-				map: loader.load('./src/assets/keyLight.png'),
-				emissiveMap: loader.load('./src/assets/keyLight.png'),
+				map: loader.load(require('./assets/keyLight.png')),
+				emissiveMap: loader.load(require('./assets/keyLight.png')),
 				emissive: 0xffffff,
 				emissiveIntensity: 1,
 				transparent: true
@@ -399,18 +397,27 @@ export default class Track {
 			this.keyLights[i] = new THREE.Mesh(kGeometry, kLightMat);
 		}
 
+		let key1 = require('./assets/key.png');
+		let key2 = require('./assets/key2.png');
+		let key3 = require('./assets/key3.png');
+		let key4 = require('./assets/key.png');
+		let keyPressed1 = require('./assets/keyPressed.png');
+		let keyPressed2 = require('./assets/key2Pressed.png');
+		let keyPressed3 = require('./assets/key3Pressed.png');
+		let keyPressed4 = require('./assets/keyPressed.png');
+
 		this.key.materials = [
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key2.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key3.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key.png') })
+			new THREE.MeshBasicMaterial({ map: loader.load(key1) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(key2) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(key3) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(key4) })
 		];
 
 		this.key.pressedMats = [
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/keyPressed.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key2Pressed.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/key3Pressed.png') }),
-			new THREE.MeshBasicMaterial({ map: loader.load('./src/assets/keyPressed.png') })
+			new THREE.MeshBasicMaterial({ map: loader.load(keyPressed1) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(keyPressed2) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(keyPressed3) }),
+			new THREE.MeshBasicMaterial({ map: loader.load(keyPressed4) })
 		];
 
 		this.yEndPoint = -40;
@@ -419,8 +426,8 @@ export default class Track {
 		console.log(this.yStartPoint);
 		const jLineMat = new THREE.MeshPhongMaterial({
 			color: 0xffffff,
-			map: loader.load('./src/assets/jLine.png'),
-			emissiveMap: loader.load('./src/assets/jLine.png'),
+			map: loader.load(require('./assets/jLine.png')),
+			emissiveMap: loader.load(require('./assets/jLine.png')),
 			emissive: 0xffffff,
 			emissiveIntensity: 1,
 			transparent: true
@@ -434,8 +441,8 @@ export default class Track {
 		let sideGeometry = new THREE.BoxGeometry(scaleWidth * 510, 2500, 1);
 		let leftMaterial = new THREE.MeshPhongMaterial({
 			color: 0xffffff,
-			map: loader.load('./src/assets/trackLeft.png'),
-			emissiveMap: loader.load('./src/assets/trackLeft.png'),
+			map: loader.load(require('./assets/trackLeft.png')),
+			emissiveMap: loader.load(require('./assets/trackLeft.png')),
 			emissive: 0xffffff,
 			emissiveIntensity: 1,
 			shininess: 100,
@@ -444,8 +451,8 @@ export default class Track {
 		});
 		let rightMaterial = new THREE.MeshPhongMaterial({
 			color: 0xffffff,
-			map: loader.load('./src/assets/trackRight.png'),
-			emissiveMap: loader.load('./src/assets/trackRight.png'),
+			map: loader.load(require('./assets/trackRight.png')),
+			emissiveMap: loader.load(require('./assets/trackRight.png')),
 			emissive: 0xffffff,
 			emissiveIntensity: 1,
 			shininess: 100,

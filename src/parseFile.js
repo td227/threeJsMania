@@ -1,9 +1,9 @@
-import * as THREE from '../node_modules/three/build/three.module.js ';
-import Note from './note.js';
+import * as THREE from 'three';
+import Note from './note';
 
 export default async function parseFile(vel, keys) {
 	// let song = './src/songs/chakra/1494300 uma - Chakra/uma - Chakra (Shima Rin) [ADVANCED] - TEST.osu';
-	let song = 'src/songs/chakra/1494300 uma - Chakra/uma - Chakra (Shima Rin) [MAXIMUM].osu';
+	//let song = 'src/songs/chakra/1494300 uma - Chakra/uma - Chakra (Shima Rin) [MAXIMUM].osu';
 
 	let _song;
 	let objects = [];
